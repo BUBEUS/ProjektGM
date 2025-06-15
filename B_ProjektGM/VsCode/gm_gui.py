@@ -1086,10 +1086,14 @@ class MagazynApp(tk.Tk):
         ax.set_ylabel("Liczba")
         ax.set_xlabel("Typ operacji")
 
-        # Wstawienie wykresu do GUI
-        canvas = FigureCanvasTkAgg(fig, master=self.analiza_frame)
+        # NOWE OKNO
+        chart_window = tk.Toplevel(self)
+        chart_window.title("Wykres - Liczba operacji wg typu")
+        chart_window.geometry("600x400")
+
+        canvas = FigureCanvasTkAgg(fig, master=chart_window)
         canvas.draw()
-        canvas.get_tk_widget().pack(pady=10)
+        canvas.get_tk_widget().pack(fill="both", expand=True, padx=10, pady=10)
 
     def update_price(self, *args):
         produkt_id_str = self.product_SelectedId.get().strip()
